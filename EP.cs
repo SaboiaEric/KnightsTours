@@ -220,12 +220,11 @@ namespace EP
             if (b.BackColor == Color.LightGray)
             {
                 
-                   f = Image.FromFile("C:\\Users\\erics\\Desktop\\ExQuebraCabeça\\EPEx\\Imagens\\HORSECINZA.png");
+                   f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
             }
             else
             {
-                
-                 f = Image.FromFile("C:\\Users\\erics\\Desktop\\ExQuebraCabeça\\EPEx\\Imagens\\HORSE.png");
+                 f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
             }
             b.BackgroundImage = f;
             completo++;
@@ -243,11 +242,11 @@ namespace EP
             Image f = null;
             if (BL[startx, starty].BackColor == Color.LightGray)
             {
-                f = Image.FromFile("C:\\Users\\erics\\Desktop\\ExQuebraCabeça\\EPEx\\Imagens\\HORSECINZA.png");
+                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
             }
             else
             {
-                f = Image.FromFile("C:\\Users\\erics\\Desktop\\ExQuebraCabeça\\EPEx\\Imagens\\HORSE.png");
+                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
             }
             BL[startx, starty].BackgroundImage = f;
             BL[startx, starty].Text = "";
@@ -302,11 +301,11 @@ namespace EP
                     Image f = null;
                     if (BL[bx, by].BackColor == Color.LightGray)
                     {
-                        f = Image.FromFile("C:\\Users\\erics\\Desktop\\ExQuebraCabeça\\EPEx\\Imagens\\HORSECINZA.png");
+                        f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
                     }
                     else
                     {
-                        f = Image.FromFile("C:\\Users\\erics\\Desktop\\ExQuebraCabeça\\EPEx\\Imagens\\HORSE.png");
+                        f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
                     }
                     BL[bx, by].BackgroundImage = f;
                     Thread.Sleep(600);
