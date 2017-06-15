@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace EP
+namespace KnightsTours.Telas
 {
     public partial class Inicio : Form
     {
@@ -36,7 +36,7 @@ namespace EP
                 MessageBox.Show("Posição não existente no tabuleiro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            EP func = new EP(Convert.ToInt32(txtLine.Text), Convert.ToInt32(txtColuna.Text),
+            PainelPrincipal func = new PainelPrincipal(Convert.ToInt32(txtLine.Text), Convert.ToInt32(txtColuna.Text),
                 Convert.ToInt32(txtPosx.Text), Convert.ToInt32(txtPosy.Text));
 
             func.Show();

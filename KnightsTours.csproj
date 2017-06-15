@@ -112,10 +112,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inicio.cs">
+    <Compile Include="Telas\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inicio.Designer.cs">
+    <Compile Include="Telas\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="DataStructure\PriorityQueue.cs" />
@@ -125,7 +125,7 @@
     <Compile Include="DataStructure\Edge.cs" />
     <Compile Include="DataStructure\Graph.cs" />
     <Compile Include="DataStructure\Node.cs" />
-    <Compile Include="EP.cs">
+    <Compile Include="Telas\PainelPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KnightsTours.cs">
@@ -133,10 +133,10 @@
     </Compile>
     <Content Include="Imagens\HORSE.png" />
     <Content Include="Imagens\HORSECINZA.png" />
-    <EmbeddedResource Include="EP.resx">
-      <DependentUpon>EP.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\PainelPrincipal.resx">
+      <DependentUpon>PainelPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inicio.resx">
+    <EmbeddedResource Include="Telas\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

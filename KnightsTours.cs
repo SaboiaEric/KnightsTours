@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Collections.Generic;
-using ProjetoGrafos.DataStructure;
 using System.Linq;
+using KnightsTours.Telas;
 
-namespace EP
+namespace KnightsTours
 {
     public class KnightsTours : Graph
     {

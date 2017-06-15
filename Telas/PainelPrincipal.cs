@@ -6,15 +6,14 @@ using System.Windows.Forms;
 using System.Data;
 using System.Threading;
 using System.Collections.Generic;
-using ProjetoGrafos.DataStructure;
 using System.Linq;
 
-namespace EP
+namespace KnightsTours.Telas
 {
     /// <summary>
     /// Summary description for Form1.
     /// </summary>
-    public class EP : System.Windows.Forms.Form
+    public class PainelPrincipal : Form
     {
         private System.Windows.Forms.Button botaoInicial;
         /// <summary>
@@ -36,7 +35,7 @@ namespace EP
         private Button btnAnimar;
         private int completo = 1;
 
-        public EP(int posx, int posy, int inix, int iniy)
+        public PainelPrincipal(int posx, int posy, int inix, int iniy)
         {
             // Required for Windows Form Designer support
             InitializeComponent();
@@ -157,7 +156,7 @@ namespace EP
             this.btnAnimar.Text = "Animar";
             this.btnAnimar.Click += new System.EventHandler(this.btnAnimar_Click);
             // 
-            // EP
+            // PainelPrincipal
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(676, 463);
@@ -168,7 +167,7 @@ namespace EP
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnSolve);
             this.Controls.Add(this.botaoInicial);
-            this.Name = "EP";
+            this.Name = "PainelPrincipal";
             this.Text = "Passeio do Cavalo - Knight\'s Tour";
             this.Load += new System.EventHandler(this.EP_Load);
             this.ResumeLayout(false);

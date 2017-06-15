@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ProjetoGrafos.DataStructure
+namespace KnightsTours.Telas
 {
     /// <summary>
     /// Classe que representa um nó dentro de um grafo.

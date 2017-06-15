@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetoGrafos.DataStructure
+namespace KnightsTours.Telas
 {
     /// <summary>
     /// Classe que representa um arco.
