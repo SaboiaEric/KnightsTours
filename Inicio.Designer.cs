@@ -33,12 +33,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtLine = new System.Windows.Forms.TextBox();
             this.txtColuna = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnIniciar = new System.Windows.Forms.Button();
             this.txtPosx = new System.Windows.Forms.TextBox();
             this.txtPosy = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btn_limpar = new System.Windows.Forms.Button();
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -82,15 +82,15 @@
             this.txtColuna.Size = new System.Drawing.Size(100, 20);
             this.txtColuna.TabIndex = 2;
             // 
-            // button1
+            // btnIniciar
             // 
-            this.button1.Location = new System.Drawing.Point(214, 42);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 45);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "INICIAR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnIniciar.Location = new System.Drawing.Point(214, 42);
+            this.btnIniciar.Name = "btnIniciar";
+            this.btnIniciar.Size = new System.Drawing.Size(75, 45);
+            this.btnIniciar.TabIndex = 5;
+            this.btnIniciar.Text = "INICIAR";
+            this.btnIniciar.UseVisualStyleBackColor = true;
+            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
             // txtPosx
             // 
@@ -124,27 +124,27 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Pos. Cavalo Y:";
             // 
-            // btn_limpar
+            // btnLimpar
             // 
-            this.btn_limpar.Location = new System.Drawing.Point(214, 90);
-            this.btn_limpar.Name = "btn_limpar";
-            this.btn_limpar.Size = new System.Drawing.Size(75, 45);
-            this.btn_limpar.TabIndex = 10;
-            this.btn_limpar.Text = "LIMPAR";
-            this.btn_limpar.UseVisualStyleBackColor = true;
-            this.btn_limpar.Click += new System.EventHandler(this.btn_limpar_Click);
+            this.btnLimpar.Location = new System.Drawing.Point(214, 90);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(75, 45);
+            this.btnLimpar.TabIndex = 10;
+            this.btnLimpar.Text = "LIMPAR";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 147);
-            this.Controls.Add(this.btn_limpar);
+            this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPosy);
             this.Controls.Add(this.txtPosx);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.txtColuna);
             this.Controls.Add(this.txtLine);
             this.Controls.Add(this.label3);
@@ -164,11 +164,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtLine;
         private System.Windows.Forms.TextBox txtColuna;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.TextBox txtPosx;
         private System.Windows.Forms.TextBox txtPosy;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btn_limpar;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }

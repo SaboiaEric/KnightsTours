@@ -16,7 +16,7 @@ namespace EP
     /// </summary>
     public class EP : System.Windows.Forms.Form
     {
-        private System.Windows.Forms.Button b00;
+        private System.Windows.Forms.Button botaoInicial;
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -28,18 +28,17 @@ namespace EP
         private TextBox txtSolucao;
         private int Linha;
         private int Coluna;
-        private Button button1;
-        private Button button2;
+        private Button btnCriar;
+        private Button btnRetornarMenu;
         private string a = "";
         private int startx;
         private int starty;
+        private Button btnAnimar;
         private int completo = 1;
 
         public EP(int posx, int posy, int inix, int iniy)
         {
-            //
             // Required for Windows Form Designer support
-            //
             InitializeComponent();
             Linha = posx;
             Coluna = posy;
@@ -47,6 +46,9 @@ namespace EP
             starty = iniy;
             // Draws the painel
             DrawPanel();
+            PosicaoInicial();
+            btnAnimar.Enabled = false;
+            btnCriar.Visible = false;
         }
 
         /// <summary>
@@ -71,32 +73,33 @@ namespace EP
         /// </summary>
         private void InitializeComponent()
         {
-            this.b00 = new System.Windows.Forms.Button();
+            this.botaoInicial = new System.Windows.Forms.Button();
             this.btnSolve = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.txtSolucao = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCriar = new System.Windows.Forms.Button();
+            this.btnRetornarMenu = new System.Windows.Forms.Button();
+            this.btnAnimar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // b00
+            // botaoInicial
             // 
-            this.b00.BackColor = System.Drawing.Color.White;
-            this.b00.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.b00.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.b00.Location = new System.Drawing.Point(8, 8);
-            this.b00.Margin = new System.Windows.Forms.Padding(8);
-            this.b00.Name = "b00";
-            this.b00.Size = new System.Drawing.Size(56, 56);
-            this.b00.TabIndex = 2;
-            this.b00.UseVisualStyleBackColor = false;
-            this.b00.Visible = false;
-            this.b00.Click += new System.EventHandler(this.b00_Click);
+            this.botaoInicial.BackColor = System.Drawing.Color.White;
+            this.botaoInicial.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.botaoInicial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botaoInicial.Location = new System.Drawing.Point(8, 8);
+            this.botaoInicial.Margin = new System.Windows.Forms.Padding(8);
+            this.botaoInicial.Name = "botaoInicial";
+            this.botaoInicial.Size = new System.Drawing.Size(56, 56);
+            this.botaoInicial.TabIndex = 2;
+            this.botaoInicial.UseVisualStyleBackColor = false;
+            this.botaoInicial.Visible = false;
+            this.botaoInicial.Click += new System.EventHandler(this.botaoInicial_Click);
             // 
             // btnSolve
             // 
             this.btnSolve.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSolve.Location = new System.Drawing.Point(491, 216);
+            this.btnSolve.Location = new System.Drawing.Point(491, 249);
             this.btnSolve.Name = "btnSolve";
             this.btnSolve.Size = new System.Drawing.Size(173, 28);
             this.btnSolve.TabIndex = 3;
@@ -106,7 +109,7 @@ namespace EP
             // btnLimpar
             // 
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Location = new System.Drawing.Point(491, 284);
+            this.btnLimpar.Location = new System.Drawing.Point(491, 317);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnLimpar.Size = new System.Drawing.Size(173, 28);
@@ -123,39 +126,51 @@ namespace EP
             this.txtSolucao.Size = new System.Drawing.Size(173, 177);
             this.txtSolucao.TabIndex = 5;
             // 
-            // button1
+            // btnCriar
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(491, 250);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 28);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Criar";
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnCriar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCriar.Location = new System.Drawing.Point(491, 216);
+            this.btnCriar.Name = "btnCriar";
+            this.btnCriar.Size = new System.Drawing.Size(173, 28);
+            this.btnCriar.TabIndex = 6;
+            this.btnCriar.Text = "Criar";
+            this.btnCriar.Click += new System.EventHandler(this.btnCriar_Click);
             // 
-            // button2
+            // btnRetornarMenu
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(491, 318);
-            this.button2.Name = "button2";
-            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(173, 52);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Retornar ao Menu";
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnRetornarMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRetornarMenu.Location = new System.Drawing.Point(491, 351);
+            this.btnRetornarMenu.Name = "btnRetornarMenu";
+            this.btnRetornarMenu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnRetornarMenu.Size = new System.Drawing.Size(173, 52);
+            this.btnRetornarMenu.TabIndex = 7;
+            this.btnRetornarMenu.Text = "Retornar ao Menu";
+            this.btnRetornarMenu.Click += new System.EventHandler(this.btnRetornarMenu_Click);
+            // 
+            // btnAnimar
+            // 
+            this.btnAnimar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAnimar.Location = new System.Drawing.Point(491, 283);
+            this.btnAnimar.Name = "btnAnimar";
+            this.btnAnimar.Size = new System.Drawing.Size(173, 28);
+            this.btnAnimar.TabIndex = 8;
+            this.btnAnimar.Text = "Animar";
+            this.btnAnimar.Click += new System.EventHandler(this.btnAnimar_Click);
             // 
             // EP
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(676, 463);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAnimar);
+            this.Controls.Add(this.btnRetornarMenu);
+            this.Controls.Add(this.btnCriar);
             this.Controls.Add(this.txtSolucao);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnSolve);
-            this.Controls.Add(this.b00);
+            this.Controls.Add(this.botaoInicial);
             this.Name = "EP";
             this.Text = "Passeio do Cavalo - Knight\'s Tour";
+            this.Load += new System.EventHandler(this.EP_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,17 +202,17 @@ namespace EP
                 {
                     Button B = new Button();
 
-                    B.Parent = b00.Parent;
-                    B.Font = b00.Font;
-                    B.Size = b00.Size;
+                    B.Parent = botaoInicial.Parent;
+                    B.Font = botaoInicial.Font;
+                    B.Size = botaoInicial.Size;
                     B.Left = i * 56 + 10;
                     B.Top = j * 56 + 10;
                     if (i % 2 == 0 && j % 2 == 0 || i == j || (j % 2 != 0 && i % 2 != 0))
-                        B.BackColor = b00.BackColor;
+                        B.BackColor = botaoInicial.BackColor;
                     else
                         B.BackColor = Color.LightGray;
                     B.Visible = true;
-                    B.Click += new System.EventHandler(this.b00_Click);
+                    B.Click += new System.EventHandler(this.botaoInicial_Click);
                     BL[i, j] = B;
                     BL[i, j].Text = (Convert.ToChar(i + 65).ToString() + (j + 1).ToString());
                 }
@@ -209,7 +224,7 @@ namespace EP
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void b00_Click(object sender, System.EventArgs e)
+        private void botaoInicial_Click(object sender, System.EventArgs e)
         {
             Button b = sender as Button;
             Image f = null;
@@ -239,24 +254,56 @@ namespace EP
             EightPuzzle sol = new EightPuzzle();
 
             a = sol.Solucao(Linha, Coluna, startx, starty);
-            Image f = null;
-            if (BL[startx, starty].BackColor == Color.LightGray)
-            {
-                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
-            }
-            else
-            {
-                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
-            }
-            BL[startx, starty].BackgroundImage = f;
-            BL[startx, starty].Text = "";
+            txtSolucao.Text = a;
+            if (a.Equals("Não existe caminho"))
+                return;
 
             txtSolucao.Text = a;
+            btnAnimar.Enabled = true;
+            btnCriar.Enabled = false;
+            //Image f = null;
+            //if (BL[startx, starty].BackColor == Color.LightGray)
+            //{
+            //    f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
+            //}
+            //else
+            //{
+            //    f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
+            //}
+            //BL[startx, starty].BackgroundImage = f;
+            //BL[startx, starty].Text = "";
+
         }
 
         //Criar - Processo automático de passeio do cavalo.
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCriar_Click(object sender, EventArgs e)
         {
+            PosicaoInicial();
+        }
+
+        private string RemoverVirgula()
+        {
+            return new string(a.ToCharArray().Where(x => !(",").Contains(x)).ToArray());
+        }
+
+        private string RemoverEspacos()
+        {
+            return new string(a.ToCharArray().Where(x => !Char.IsWhiteSpace(x)).ToArray());
+        }
+
+        // Retornar ao menu principal.
+        private void btnRetornarMenu_Click(object sender, EventArgs e)
+        {
+            Inicio i = new Inicio();
+            i.Show();
+            this.Hide();
+            PosicaoInicial();
+            btnAnimar.Enabled = false;
+        }
+
+        private void btnAnimar_Click(object sender, EventArgs e)
+        {
+            PosicionaCavalo();
             if (a != "" && a[0] != 'N')
             {
                 a = RemoverEspacos();
@@ -292,7 +339,7 @@ namespace EP
                     }
                 }
                 listaint.RemoveAll(z => z == 0);
-               
+
                 for (int i = 0; i < listachar.Count; i++)
                 {
                     int bx = Convert.ToInt32(listachar[i]) - 65;
@@ -316,22 +363,9 @@ namespace EP
             }
         }
 
-        private string RemoverVirgula()
+        private void EP_Load(object sender, EventArgs e)
         {
-            return new string(a.ToCharArray().Where(x => !(",").Contains(x)).ToArray());
-        }
 
-        private string RemoverEspacos()
-        {
-            return new string(a.ToCharArray().Where(x => !Char.IsWhiteSpace(x)).ToArray());
-        }
-
-        // Retornar ao menu principal.
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Inicio i = new Inicio();
-            i.Show();
-            this.Hide();
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -340,12 +374,38 @@ namespace EP
             {
                 for (int j = 0; j < Coluna; j++)
                 {
+                    if (BL[i, j] == BL[startx, starty])
+                        continue;
                     BL[i, j].BackgroundImage = null;
                 }
             }
             BL[startx, starty].Text = Convert.ToChar(startx + 65) + (starty + 1).ToString();
             txtSolucao.Text = "";
             completo = 0;
+            btnAnimar.Enabled = false;
+        
+        }
+
+        public void PosicaoInicial()
+        {
+            PosicionaCavalo();
+            txtSolucao.Text = string.Empty;
+            a = string.Empty;
+        }
+
+        public void PosicionaCavalo()
+        {
+            Image f = null;
+            if (BL[startx, starty].BackColor == Color.LightGray)
+            {
+                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
+            }
+            else
+            {
+                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
+            }
+            BL[startx, starty].BackgroundImage = f;
+            BL[startx, starty].Text = "";
         }
     }
 }

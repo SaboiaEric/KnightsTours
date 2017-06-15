@@ -17,7 +17,7 @@ namespace EP
             SetaValores();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnIniciar_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(txtColuna.Text) <= 0 || Convert.ToInt32(txtLine.Text) <= 0)
             {
@@ -43,7 +43,7 @@ namespace EP
             this.Hide();
         }
 
-        private void btn_limpar_Click(object sender, EventArgs e)
+        private void btnLimpar_Click(object sender, EventArgs e)
         {
             SetaValores();
         }
