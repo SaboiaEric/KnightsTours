@@ -7,57 +7,61 @@ using System.Linq;
 
 namespace EP
 {
-    public class EightPuzzle : Graph
+    public class KnightsTours : Graph
     {
         readonly static int[,] moves = { {+1,-2},{+2,-1},{+2,+1},{+1,+2},
                                         {-1,+2},{-2,+1},{-2,-1},{-1,-2} };
 
-        public string Solucao(int l, int c, int startx, int starty)
+        /// <summary>
+        /// Solução para o jogo
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="c"></param>
+        /// <param name="startx"></param>
+        /// <param name="starty"></param>
+        /// <returns></returns>
+        public string Solucao(int linha, int coluna, int startx, int starty)
         {
-            int Linha = l;
-            int Coluna = c;
-            string passeio = "";
-            int[,] tabuleiro = new int[Linha, Coluna];
-            Graph graph = new Graph();
-            tabuleiro.Initialize();
-
-            int x, y;
-
-            x = startx;
-            y = starty;
-
-            List<Node> list = new List<Node>(Linha * Coluna);
-            Node antigo = new Node(x.ToString() + y.ToString(), x, y);
-            list.Add(antigo);
-            graph.AddNode(antigo.Nome, x, y);
+            int inicioX, inicioY;
+            inicioX = startx;
+            inicioY = starty;
+            string passeio = string.Empty;
+            int[,] tabuleiro = new int[linha, coluna];
+            Graph grafoSolucao = new Graph();
             
-            while (list.Count < Linha * Coluna)
+            //Lista de nós
+            List<Node> tabuleiroLista = new List<Node>(linha * coluna);
+            Node noAntigo = new Node(inicioX.ToString() + inicioY.ToString(), inicioX, inicioY);
+            tabuleiroLista.Add(noAntigo);
+            grafoSolucao.AddNode(noAntigo.Nome, inicioX, inicioY);
+            
+            while (tabuleiroLista.Count < linha * coluna)
             {
-                if (MovimentoEPossivel(tabuleiro, x, y, Linha, Coluna))
+                if (MovimentoEPossivel(tabuleiro, inicioX, inicioY, linha, coluna))
                 {
-                    int move = tabuleiro[x, y];
-                    tabuleiro[x, y]++;
-                    x += moves[move, 0];
-                    y += moves[move, 1];
-                    Node novo = new Node(x.ToString() + y.ToString(), x, y);
-                    graph.AddNode(novo.Nome, x, y);
-                    graph.AddEdge(antigo.Nome, novo.Nome, 1);
-                    list.Add(novo);
-                    antigo = novo;
+                    int move = tabuleiro[inicioX, inicioY];
+                    tabuleiro[inicioX, inicioY]++;
+                    inicioX += moves[move, 0];
+                    inicioY += moves[move, 1];
+                    Node novo = new Node(inicioX.ToString() + inicioY.ToString(), inicioX, inicioY);
+                    grafoSolucao.AddNode(novo.Nome, inicioX, inicioY);
+                    grafoSolucao.AddEdge(noAntigo.Nome, novo.Nome, 1);
+                    tabuleiroLista.Add(novo);
+                    noAntigo = novo;
                 }
                 else
                 {
-                    if (tabuleiro[x, y] >= 8)
+                    if (tabuleiro[inicioX, inicioY] >= 8)
                     {
-                        tabuleiro[x, y] = 0;
-                        Node removido = list[list.Count - 1];
-                        list.RemoveAt(list.Count - 1);
-                        graph.RemoveNode(removido.Nome);
+                        tabuleiro[inicioX, inicioY] = 0;
+                        Node removido = tabuleiroLista[tabuleiroLista.Count - 1];
+                        tabuleiroLista.RemoveAt(tabuleiroLista.Count - 1);
+                        grafoSolucao.RemoveNode(removido.Nome);
                         try
                         {
-                            antigo = graph.Nodes[graph.Nodes.Length - 1];
-                            x = graph.Nodes[graph.Nodes.Length - 1].X;
-                            y = graph.Nodes[graph.Nodes.Length - 1].Y;
+                            noAntigo = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1];
+                            inicioX = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].X;
+                            inicioY = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].Y;
                         }
                         catch (Exception)
                         {
@@ -65,11 +69,11 @@ namespace EP
                         }
 
                     }
-                    tabuleiro[x, y]++;
+                    tabuleiro[inicioX, inicioY]++;
                 }
             }
 
-            foreach (Node item in graph.Nodes)
+            foreach (Node item in grafoSolucao.Nodes)
             {
                 if (item.Arcos.Count > 1)
                 {
@@ -85,7 +89,7 @@ namespace EP
                     }
                 }
             }
-            if(passeio != "")
+            if(passeio != string.Empty)
                 passeio = passeio.Remove(passeio.Length - 2);
             return passeio;
         }

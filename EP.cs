@@ -251,9 +251,9 @@ namespace EP
 
         private void btnSolve_Click(object sender, System.EventArgs e)
         {
-            EightPuzzle sol = new EightPuzzle();
+            KnightsTours game = new KnightsTours();
 
-            a = sol.Solucao(Linha, Coluna, startx, starty);
+            a = game.Solucao(Linha, Coluna, startx, starty);
             txtSolucao.Text = a;
             if (a.Equals("Não existe caminho"))
                 return;
