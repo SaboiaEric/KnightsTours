@@ -9,8 +9,21 @@ namespace KnightsTours
 {
     public class KnightsTours : Graph
     {
-        readonly static int[,] moves = { {+1,-2},{+2,-1},{+2,+1},{+1,+2},
-                                        {-1,+2},{-2,+1},{-2,-1},{-1,-2} };
+
+
+        /// <summary>
+        /// Movimentos possíveis
+        /// </summary>
+        readonly static int[,] moves = { 
+            {+1,-2},
+            {+1,+2},
+            {+2,-1},
+            {+2,+1},
+            {-2,+1},
+            {-2,-1},
+            {-1,+2},
+            {-1,-2}
+        };
 
         /// <summary>
         /// Solução para o jogo
@@ -26,17 +39,22 @@ namespace KnightsTours
             inicioX = startx;
             inicioY = starty;
             string passeio = string.Empty;
+            //Matriz que representa o tabuleiro de xadrez;
             int[,] tabuleiro = new int[linha, coluna];
             Graph grafoSolucao = new Graph();
             
-            //Lista de nós
-            List<Node> tabuleiroLista = new List<Node>(linha * coluna);
+            //Lista que representa a capacidade do tabuleiro de xadrez;
+            List<Node> tabuleiroLista = new List<Node>(linha*coluna);
+            //Cria e coleta o primeiro nó
             Node noAntigo = new Node(inicioX.ToString() + inicioY.ToString(), inicioX, inicioY);
+            //Adiciona o primeiro nó na lista dos nós existentes no tabuleiro
             tabuleiroLista.Add(noAntigo);
+            //Adiciona este nó no grafo de solução pois a solução terá como partida este nó.
             grafoSolucao.AddNode(noAntigo.Nome, inicioX, inicioY);
             
             while (tabuleiroLista.Count < linha * coluna)
             {
+                //Verifica se há movimentos possiveis para o cavalo andar
                 if (MovimentoEPossivel(tabuleiro, inicioX, inicioY, linha, coluna))
                 {
                     int move = tabuleiro[inicioX, inicioY];
@@ -78,16 +96,12 @@ namespace KnightsTours
                 if (item.Arcos.Count > 1)
                 {
                     passeio += Convert.ToChar(item.Arcos[item.Arcos.Count - 1].To.X + 65).ToString() + 
-                               (item.Arcos[item.Arcos.Count - 1].To.Y + 1).ToString() + ", ";
+                        (item.Arcos[item.Arcos.Count - 1].To.Y + 1).ToString() + ", ";
                     continue;
                 }
                 foreach (Edge item2 in item.Arcos)
-                {
                     if (item2.To != null)
-                    {
                         passeio += Convert.ToChar((item2.To.X + 65)).ToString() + (item2.To.Y +1).ToString() + ", ";
-                    }
-                }
             }
             if(passeio != string.Empty)
                 passeio = passeio.Remove(passeio.Length - 2);
@@ -115,9 +129,12 @@ namespace KnightsTours
             return f;
         }
 
+
         public bool MovimentoEPossivel(int[,] tabuleiro, int xatual, int yatual, int linha, int coluna)
         {
-            if (tabuleiro[xatual, yatual] >= 8)
+            //Limite o tabuleiro de Xadrez a ser 8x8
+            int ca = tabuleiro[xatual, yatual];
+            if (ca >= 8)
                 return false;
 
             int novox = xatual + moves[tabuleiro[xatual, yatual], 0]; 

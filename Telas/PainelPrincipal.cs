@@ -34,6 +34,7 @@ namespace KnightsTours.Telas
         private int starty;
         private Button btnAnimar;
         private int completo = 1;
+        private int TempoProcessamentoEmMinisegundos; 
 
         public PainelPrincipal(int posx, int posy, int inix, int iniy)
         {
@@ -48,6 +49,7 @@ namespace KnightsTours.Telas
             PosicaoInicial();
             btnAnimar.Enabled = false;
             btnCriar.Visible = false;
+            TempoProcessamentoEmMinisegundos = 300;
         }
 
         /// <summary>
@@ -103,7 +105,7 @@ namespace KnightsTours.Telas
             this.btnSolve.Size = new System.Drawing.Size(173, 28);
             this.btnSolve.TabIndex = 3;
             this.btnSolve.Text = "Solução";
-            this.btnSolve.Click += new System.EventHandler(this.btnSolve_Click);
+            this.btnSolve.Click += new System.EventHandler(this.btnSolucao_Click);
             // 
             // btnLimpar
             // 
@@ -248,7 +250,7 @@ namespace KnightsTours.Telas
             }
         }
 
-        private void btnSolve_Click(object sender, System.EventArgs e)
+        private void btnSolucao_Click(object sender, System.EventArgs e)
         {
             KnightsTours game = new KnightsTours();
 
@@ -260,17 +262,6 @@ namespace KnightsTours.Telas
             txtSolucao.Text = a;
             btnAnimar.Enabled = true;
             btnCriar.Enabled = false;
-            //Image f = null;
-            //if (BL[startx, starty].BackColor == Color.LightGray)
-            //{
-            //    f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
-            //}
-            //else
-            //{
-            //    f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
-            //}
-            //BL[startx, starty].BackgroundImage = f;
-            //BL[startx, starty].Text = "";
 
         }
 
@@ -311,18 +302,15 @@ namespace KnightsTours.Telas
                 List<int> listaint = new List<int>();
                 // Cria uma lista de Char onde armazena todos as posicoes do char da solucao
                 for (int i = 0; i < a.Length; i++)
-                {
                     if (a[i] >= 65 && a[i] <= 90)
                         listachar.Add(a[i]);
-                }
+
                 //Pega todos as posicoes das linhas da solucao para criar com o char.
                 //Precisou fazer isso por causa do tabuleiro 3x10, que na casa A10 ele dava exception.
                 for (int i = 0; i < a.Length; i++)
                 {
                     if (i == a.Length - 1)
-                    {
                         listaint.Add(int.Parse(a[i].ToString()));
-                    }
                     else
                     {
                         if (Char.IsDigit(a[i]) && Char.IsDigit(a[i + 1]))
@@ -346,19 +334,16 @@ namespace KnightsTours.Telas
 
                     Image f = null;
                     if (BL[bx, by].BackColor == Color.LightGray)
-                    {
                         f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
-                    }
                     else
-                    {
                         f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
-                    }
+                    
                     BL[bx, by].BackgroundImage = f;
-                    Thread.Sleep(600);
+                    Thread.Sleep(TempoProcessamentoEmMinisegundos/3);
                     Application.DoEvents();
                 }
-                Thread.Sleep(1500);
-                MessageBox.Show("Passeio Finalizado", "Fim de processo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Thread.Sleep(TempoProcessamentoEmMinisegundos);
+                MessageBox.Show("Passeio Finalizado", "Fim de processo", MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
         }
 
