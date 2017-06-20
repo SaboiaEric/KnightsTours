@@ -20,9 +20,18 @@ namespace KnightsTours.Telas
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+            Dictionary<string, string> obsPosicao = new Dictionary<string, string>();
+            string[] valores;
+            for (int i = 0; i < listObs.Items.Count; i++)
+            {
+                valores = listObs.Items[i].Text.Split(' ');
+                obsPosicao.Add(valores.ElementAt(2) + valores.ElementAt(6), 
+                    valores.ElementAt(2) + " - " + valores.ElementAt(6));
+            }
             
+
             PainelPrincipal func = new PainelPrincipal(Convert.ToInt32(txtLine.Text), Convert.ToInt32(txtColuna.Text),
-                Convert.ToInt32(txtPosx.Text), Convert.ToInt32(txtPosy.Text));
+                Convert.ToInt32(txtPosx.Text), Convert.ToInt32(txtPosy.Text), obsPosicao);
 
             func.Show();
             this.Hide();
@@ -87,11 +96,11 @@ namespace KnightsTours.Telas
         {
             if (validaPosicaoObstaculos())
             {                
-                listObs.Items.Add(new ListViewItem($"X = {txtObsX.Text}, Y = {txtObsY.Text}"));
+                listObs.Items.Add(new ListViewItem($"X = {txtObsX.Text} - Y = {txtObsY.Text}"));
             }
             else
             {
-                MessageBox.Show("Posição fora do tabuleiro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Posição inválida", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -102,8 +111,14 @@ namespace KnightsTours.Telas
             int obsY = Convert.ToInt32(txtObsY.Text);
             int col = Convert.ToInt32(txtColuna.Text);
             int lin = Convert.ToInt32(txtLine.Text);
-            if (obsX >= 0 && obsX <= col && obsY >= 0 && obsY <= lin)
-                return true;
+            int posx = Convert.ToInt32(txtPosx.Text);
+            int posy = Convert.ToInt32(txtPosy.Text);
+
+            if (obsX >= 0 && obsX <= col - 1 && obsY >= 0 && obsY <= lin - 1)
+                if (obsX == posx && obsY == posy)
+                    return false;
+                else
+                    return true;
             return false;
         }
 

@@ -133,6 +133,7 @@
     </Compile>
     <Content Include="Imagens\HORSE.png" />
     <Content Include="Imagens\HORSECINZA.png" />
+    <Content Include="Imagens\peao.png" />
     <EmbeddedResource Include="Telas\PainelPrincipal.resx">
       <DependentUpon>PainelPrincipal.cs</DependentUpon>
     </EmbeddedResource>

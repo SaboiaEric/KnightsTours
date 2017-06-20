@@ -34,9 +34,10 @@ namespace KnightsTours.Telas
         private int starty;
         private Button btnAnimar;
         private int completo = 1;
-        private int TempoProcessamentoEmMinisegundos; 
+        private int TempoProcessamentoEmMinisegundos;
+        private Dictionary<string, string> posicaoObstaculos = new Dictionary<string, string>();
 
-        public PainelPrincipal(int posx, int posy, int inix, int iniy)
+        public PainelPrincipal(int posx, int posy, int inix, int iniy, Dictionary<string, string> posicaoObstaculos)
         {
             // Required for Windows Form Designer support
             InitializeComponent();
@@ -44,6 +45,7 @@ namespace KnightsTours.Telas
             Coluna = posy;
             startx = inix;
             starty = iniy;
+            this.posicaoObstaculos = posicaoObstaculos;
             // Draws the painel
             DrawPanel();
             PosicaoInicial();
@@ -215,7 +217,7 @@ namespace KnightsTours.Telas
                     else
                         B.BackColor = Color.LightGray;
                     B.Visible = true;
-                    B.Click += new System.EventHandler(this.botaoInicial_Click);
+                    //B.Click += new System.EventHandler(this.botaoInicial_Click);
                     BL[i, j] = B;
                     BL[i, j].Text = (Convert.ToChar(i + 65).ToString() + (j + 1).ToString());
                 }
@@ -237,16 +239,16 @@ namespace KnightsTours.Telas
 
             if (b.BackColor == Color.LightGray)
             {
-                
-                   f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
+
+                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
             }
             else
             {
-                 f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
+                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
             }
             b.BackgroundImage = f;
             completo++;
-            if(completo == Linha * Coluna)
+            if (completo == Linha * Coluna)
             {
                 MessageBox.Show("Passeio Finalizado", "Fim de processo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -339,13 +341,13 @@ namespace KnightsTours.Telas
                         f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
                     else
                         f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
-                    
+
                     BL[bx, by].BackgroundImage = f;
-                    Thread.Sleep(TempoProcessamentoEmMinisegundos/3);
+                    Thread.Sleep(TempoProcessamentoEmMinisegundos / 3);
                     Application.DoEvents();
                 }
                 Thread.Sleep(TempoProcessamentoEmMinisegundos);
-                MessageBox.Show("Passeio Finalizado", "Fim de processo", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Passeio Finalizado", "Fim de processo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -369,12 +371,13 @@ namespace KnightsTours.Telas
             txtSolucao.Text = "";
             completo = 0;
             btnAnimar.Enabled = false;
-        
+
         }
 
         public void PosicaoInicial()
         {
             PosicionaCavalo();
+            PosicionaObstaculos();
             txtSolucao.Text = string.Empty;
             a = string.Empty;
         }
@@ -392,6 +395,21 @@ namespace KnightsTours.Telas
             }
             BL[startx, starty].BackgroundImage = f;
             BL[startx, starty].Text = "";
+        }
+        public void PosicionaObstaculos()
+        {
+            
+            foreach (KeyValuePair<string, string> entry in posicaoObstaculos)
+            {
+                string [] array = entry.Value.Split(' ');
+                int posx = Convert.ToInt32(array[0].ToString());
+                int posz = Convert.ToInt32(array[2].ToString());
+          
+                Image f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\peao.png");
+                BL[posx, posz].BackgroundImage = f;
+                BL[posx, posz].Text = "";
+
+            }
         }
     }
 }
