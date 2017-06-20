@@ -161,6 +161,7 @@ namespace KnightsTours.Telas
             // PainelPrincipal
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(676, 463);
             this.Controls.Add(this.btnAnimar);
             this.Controls.Add(this.btnRetornarMenu);
@@ -170,6 +171,7 @@ namespace KnightsTours.Telas
             this.Controls.Add(this.btnSolve);
             this.Controls.Add(this.botaoInicial);
             this.Name = "PainelPrincipal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Passeio do Cavalo - Knight\'s Tour";
             this.Load += new System.EventHandler(this.EP_Load);
             this.ResumeLayout(false);
