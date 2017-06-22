@@ -175,7 +175,6 @@ namespace KnightsTours.Telas
             this.Name = "PainelPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Passeio do Cavalo - Knight\'s Tour";
-            this.Load += new System.EventHandler(this.EP_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,23 +350,31 @@ namespace KnightsTours.Telas
             }
         }
 
-        private void EP_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < Linha; i++)
             {
                 for (int j = 0; j < Coluna; j++)
                 {
-                    if (BL[i, j] == BL[startx, starty])
-                        continue;
-                    BL[i, j].BackgroundImage = null;
+                    foreach (KeyValuePair<string, string> entry in posicaoObstaculos)
+                    {
+                        string[] array = entry.Value.Split(' ');
+                        if (BL[i, j] == BL[Convert.ToInt32(array[0].ToString()), Convert.ToInt32(array[2].ToString())] ||
+                            BL[i, j] == BL[startx, starty])
+                            continue;
+                        else
+                            BL[i, j].BackgroundImage = null;
+                    }
                 }
             }
             BL[startx, starty].Text = Convert.ToChar(startx + 65) + (starty + 1).ToString();
+            foreach (KeyValuePair<string, string> entry in posicaoObstaculos)
+            {
+                string[] array = entry.Value.Split(' ');
+                int posx = Convert.ToInt32(array[0].ToString());
+                int posy = Convert.ToInt32(array[2].ToString());
+                BL[posx, posy].Text = Convert.ToChar(posx + 65) + (posy + 1).ToString();
+            }
             txtSolucao.Text = "";
             completo = 0;
             btnAnimar.Enabled = false;
@@ -403,8 +410,7 @@ namespace KnightsTours.Telas
             {
                 string [] array = entry.Value.Split(' ');
                 int posx = Convert.ToInt32(array[0].ToString());
-                int posz = Convert.ToInt32(array[2].ToString());
-          
+                int posz = Convert.ToInt32(array[2].ToString());          
                 Image f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\peao.png");
                 BL[posx, posz].BackgroundImage = f;
                 BL[posx, posz].Text = "";
