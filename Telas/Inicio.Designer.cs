@@ -45,7 +45,7 @@ namespace KnightsTours.Telas
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Tab. linhas:";
+            this.label1.Text = "Tab. Linhas:";
             // 
             // label2
             // 
@@ -54,7 +54,7 @@ namespace KnightsTours.Telas
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Tab. colunas:";
+            this.label2.Text = "Tab. Colunas:";
             // 
             // label3
             // 

@@ -14,17 +14,8 @@ namespace KnightsTours
         /// <summary>
         /// Movimentos possíveis
         /// </summary>
-        readonly static int[,] moves = {
-            {+1,-2},
-            {+1,+2},
-            {+2,-1},
-            {+2,+1},
-            {-2,+1},
-            {-2,-1},
-            {-1,+2},
-            {-1,-2}
-        };
-
+        readonly static int[,] moves = { {+1,-2},{+2,-1},{+2,+1},{+1,+2},
+                                        {-1,+2},{-2,+1},{-2,-1},{-1,-2} };
         /// <summary>
         /// Solução para o jogo
         /// </summary>
@@ -33,30 +24,29 @@ namespace KnightsTours
         /// <param name="startx"></param>
         /// <param name="starty"></param>
         /// <returns></returns>
-        public string Solucao(int linha, int coluna, int startx, int starty, int[,] obstaculo)
+        public string Solucao(int l, int c, int startx, int starty, int[,] obstaculo)
         {
+            
+            int Linha = l;
+            int Coluna = c;
+            string passeio = string.Empty;
+            int[,] tabuleiro = new int[Linha, Coluna];
+            Graph grafoSolucao = new Graph();
+            tabuleiro.Initialize();
             int x, y;
             x = startx;
             y = starty;
-            string passeio = string.Empty;
-            //Matriz que representa o tabuleiro de xadrez;
-            int[,] tabuleiro = new int[linha, coluna];
+            
             this.obstaculos = obstaculo;
-            Graph grafoSolucao = new Graph();
 
-            //Lista que representa a capacidade do tabuleiro de xadrez;
-            List<Node> tabuleiroLista = new List<Node>(linha * coluna);
-            //Cria e coleta o primeiro nó
+            List<Node> tabuleiroLista = new List<Node>(Linha * Coluna);
             Node noAntigo = new Node(x.ToString() + y.ToString(), x, y);
-            //Adiciona o primeiro nó na lista dos nós existentes no tabuleiro
             tabuleiroLista.Add(noAntigo);
-            //Adiciona este nó no grafo de solução pois a solução terá como partida este nó.
             grafoSolucao.AddNode(noAntigo.Nome, x, y);
 
-            while (tabuleiroLista.Count < linha * coluna)
+            while (tabuleiroLista.Count < Linha * Coluna)
             {
-                //Verifica se há movimentos possiveis para o cavalo andar
-                if (MovimentoEPossivel(tabuleiro, x, y, linha, coluna))
+                if (MovimentoEPossivel(tabuleiro, x, y, Linha, Coluna))
                 {
                     int move = tabuleiro[x, y];
                     tabuleiro[x, y]++;
@@ -129,7 +119,7 @@ namespace KnightsTours
         }
 
 
-        public bool MovimentoEPossivel(int[,] tabuleiro, int xatual, int yatual, int linha, int coluna)
+        public bool MovimentoEPossivel(int[,] tabuleiro, int xatual, int yatual, int Linha, int Coluna)
         {
             //Quantidade de tentativas realizadas nesta posição.
             if (tabuleiro[xatual, yatual] >= 8)
@@ -138,7 +128,7 @@ namespace KnightsTours
             int novox = xatual + moves[tabuleiro[xatual, yatual], 0];
             int novoy = yatual + moves[tabuleiro[xatual, yatual], 1];
 
-            if (novox >= 0 && novox < linha && novoy >= 0 && novoy < coluna && tabuleiro[novox, novoy] == 0)
+            if (novox >= 0 && novox < Linha && novoy >= 0 && novoy < Coluna && tabuleiro[novox, novoy] == 0)
                 return (obstaculos[novox, novoy] == 1) ? false : true;
 
             return false;

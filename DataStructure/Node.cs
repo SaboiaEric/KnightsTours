@@ -28,6 +28,8 @@ namespace KnightsTours.Telas
         /// </summary>
         public List<Edge> Arcos { get; private set; }
 
+        public bool Visited { get; set; }
+
         #endregion
 
         #region Construtores

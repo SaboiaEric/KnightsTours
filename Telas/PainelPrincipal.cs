@@ -104,7 +104,7 @@ namespace KnightsTours.Telas
             // btnSolve
             // 
             this.btnSolve.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSolve.Location = new System.Drawing.Point(491, 249);
+            this.btnSolve.Location = new System.Drawing.Point(657, 249);
             this.btnSolve.Name = "btnSolve";
             this.btnSolve.Size = new System.Drawing.Size(173, 28);
             this.btnSolve.TabIndex = 3;
@@ -114,7 +114,7 @@ namespace KnightsTours.Telas
             // btnLimpar
             // 
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Location = new System.Drawing.Point(491, 317);
+            this.btnLimpar.Location = new System.Drawing.Point(657, 317);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnLimpar.Size = new System.Drawing.Size(173, 28);
@@ -124,7 +124,7 @@ namespace KnightsTours.Telas
             // 
             // txtSolucao
             // 
-            this.txtSolucao.Location = new System.Drawing.Point(491, 33);
+            this.txtSolucao.Location = new System.Drawing.Point(657, 33);
             this.txtSolucao.Multiline = true;
             this.txtSolucao.Name = "txtSolucao";
             this.txtSolucao.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -134,7 +134,7 @@ namespace KnightsTours.Telas
             // btnCriar
             // 
             this.btnCriar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCriar.Location = new System.Drawing.Point(491, 216);
+            this.btnCriar.Location = new System.Drawing.Point(657, 216);
             this.btnCriar.Name = "btnCriar";
             this.btnCriar.Size = new System.Drawing.Size(173, 28);
             this.btnCriar.TabIndex = 6;
@@ -144,7 +144,7 @@ namespace KnightsTours.Telas
             // btnRetornarMenu
             // 
             this.btnRetornarMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRetornarMenu.Location = new System.Drawing.Point(491, 351);
+            this.btnRetornarMenu.Location = new System.Drawing.Point(657, 351);
             this.btnRetornarMenu.Name = "btnRetornarMenu";
             this.btnRetornarMenu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnRetornarMenu.Size = new System.Drawing.Size(173, 52);
@@ -155,7 +155,7 @@ namespace KnightsTours.Telas
             // btnAnimar
             // 
             this.btnAnimar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnimar.Location = new System.Drawing.Point(491, 283);
+            this.btnAnimar.Location = new System.Drawing.Point(657, 283);
             this.btnAnimar.Name = "btnAnimar";
             this.btnAnimar.Size = new System.Drawing.Size(173, 28);
             this.btnAnimar.TabIndex = 8;
@@ -166,7 +166,7 @@ namespace KnightsTours.Telas
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(676, 463);
+            this.ClientSize = new System.Drawing.Size(864, 473);
             this.Controls.Add(this.btnAnimar);
             this.Controls.Add(this.btnRetornarMenu);
             this.Controls.Add(this.btnCriar);
@@ -258,8 +258,7 @@ namespace KnightsTours.Telas
         private void btnSolucao_Click(object sender, System.EventArgs e)
         {
             KnightsTours game = new KnightsTours();
-
-            a = game.Solucao(Linha, Coluna, startx, starty,tabuleiroObstaculos);
+            a = game.Solucao(Linha, Coluna, startx, starty, tabuleiroObstaculos);
             txtSolucao.Text = a;
             if (a.Equals("Não existe caminho"))
                 return;
@@ -310,7 +309,7 @@ namespace KnightsTours.Telas
                     if (a[i] >= 65 && a[i] <= 90)
                         listachar.Add(a[i]);
 
-                //Pega todos as posicoes das linhas da solucao para criar com o char.
+                //Pega todos as posicoes das Linhas da solucao para criar com o char.
                 //Precisou fazer isso por causa do tabuleiro 3x10, que na casa A10 ele dava exception.
                 for (int i = 0; i < a.Length; i++)
                 {

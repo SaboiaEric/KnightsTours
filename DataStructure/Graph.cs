@@ -17,6 +17,8 @@ namespace KnightsTours.Telas
         /// </summary>
         private List<Node> nos;
 
+       
+
         #endregion
 
         #region Propridades
@@ -149,6 +151,63 @@ namespace KnightsTours.Telas
             return false;
         }
 
+
+        public List<Node> DepthFirstSearch(string startNode)
+        {
+            List<Node> path = new List<Node>();
+            Stack<Node> stack = new Stack<Node>();
+            Node start = Find(startNode);
+            stack.Push(start);
+            // Percorre enquanto não vazio..
+            while (stack.Count > 0)
+            {
+                Node node = stack.Pop();
+                if (!node.Visited)
+                {
+                    path.Add(node);
+                    node.Visited = true;
+                    foreach (Edge e in node.Arcos)
+                    {
+                        if (!e.To.Visited)
+                        {
+                            stack.Push(e.To);
+                        }
+                    }
+                }
+            }
+            return path;
+        }
+
+        /// <summary>
+        /// Executa o caminho em largura buscando o nó alvo.
+        /// </summary>
+        /// <param name="startNode">O nó inicio.</param>
+        /// <returns>A lista de nós visitada.</returns>
+        public List<Node> BreadthFirstSearch(string startNode)
+        {
+            List<Node> path = new List<Node>();
+            Queue<Node> queue = new Queue<Node>();
+            Node start = Find(startNode);
+            queue.Enqueue(start);
+            // Percorre enquanto não vazio..
+            while (queue.Count > 0)
+            {
+                Node node = queue.Dequeue();
+                if (!node.Visited)
+                {
+                    path.Add(node);
+                    node.Visited = true;
+                    foreach (Edge e in node.Arcos)
+                    {
+                        if (!e.To.Visited)
+                        {
+                            queue.Enqueue(e.To);
+                        }
+                    }
+                }
+            }
+            return path;
+        }
         #endregion
 
 
