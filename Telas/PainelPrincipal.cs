@@ -36,6 +36,7 @@ namespace KnightsTours.Telas
         private int completo = 1;
         private int TempoProcessamentoEmMinisegundos;
         private Dictionary<string, string> posicaoObstaculos = new Dictionary<string, string>();
+        private int[,] tabuleiroObstaculos;
 
         public PainelPrincipal(int posx, int posy, int inix, int iniy, Dictionary<string, string> posicaoObstaculos)
         {
@@ -46,6 +47,7 @@ namespace KnightsTours.Telas
             startx = inix;
             starty = iniy;
             this.posicaoObstaculos = posicaoObstaculos;
+            tabuleiroObstaculos = new int[Linha, Coluna];
             // Draws the painel
             DrawPanel();
             PosicaoInicial();
@@ -356,25 +358,19 @@ namespace KnightsTours.Telas
             {
                 for (int j = 0; j < Coluna; j++)
                 {
-                    foreach (KeyValuePair<string, string> entry in posicaoObstaculos)
-                    {
-                        string[] array = entry.Value.Split(' ');
-                        if (BL[i, j] == BL[Convert.ToInt32(array[0].ToString()), Convert.ToInt32(array[2].ToString())] ||
-                            BL[i, j] == BL[startx, starty])
+                    if (BL[i, j] == BL[startx, starty] || tabuleiroObstaculos[i,j] == 1)
                             continue;
                         else
                             BL[i, j].BackgroundImage = null;
-                    }
                 }
             }
+
             BL[startx, starty].Text = Convert.ToChar(startx + 65) + (starty + 1).ToString();
-            foreach (KeyValuePair<string, string> entry in posicaoObstaculos)
-            {
-                string[] array = entry.Value.Split(' ');
-                int posx = Convert.ToInt32(array[0].ToString());
-                int posy = Convert.ToInt32(array[2].ToString());
-                BL[posx, posy].Text = Convert.ToChar(posx + 65) + (posy + 1).ToString();
-            }
+            for (int i = 0; i < Linha; i++)
+                for (int j = 0; j < Coluna; j++)
+                    if(tabuleiroObstaculos[i,j] == 1)
+                        BL[i,j].Text = Convert.ToChar(i + 65) + (j + 1).ToString();
+
             txtSolucao.Text = "";
             completo = 0;
             btnAnimar.Enabled = false;
@@ -405,17 +401,23 @@ namespace KnightsTours.Telas
         }
         public void PosicionaObstaculos()
         {
-            
             foreach (KeyValuePair<string, string> entry in posicaoObstaculos)
             {
-                string [] array = entry.Value.Split(' ');
-                int posx = Convert.ToInt32(array[0].ToString());
-                int posz = Convert.ToInt32(array[2].ToString());          
-                Image f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\peao.png");
-                BL[posx, posz].BackgroundImage = f;
-                BL[posx, posz].Text = "";
-
+                string[] array = entry.Value.Split(' ');
+                tabuleiroObstaculos[Convert.ToInt32(array[0].ToString()), Convert.ToInt32(array[2].ToString())] = 1;
             }
+
+            for (int i = 0; i < Linha; i++)
+                for (int j = 0; j < Coluna; j++)
+                    if(tabuleiroObstaculos[i,j] == 1)
+                    {
+                        Image f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\peao.png");
+                        BL[i,j].BackgroundImage = f;
+                        BL[i, j].Text = "";
+                    }
+                
+                
+
         }
     }
 }
