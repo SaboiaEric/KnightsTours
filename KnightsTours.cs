@@ -10,7 +10,7 @@ namespace KnightsTours
     public class KnightsTours : Graph
     {
 
-
+        private int[,] obstaculos;
         /// <summary>
         /// Movimentos possíveis
         /// </summary>
@@ -33,7 +33,7 @@ namespace KnightsTours
         /// <param name="startx"></param>
         /// <param name="starty"></param>
         /// <returns></returns>
-        public string Solucao(int linha, int coluna, int startx, int starty)
+        public string Solucao(int linha, int coluna, int startx, int starty, int [,]obstaculo)
         {
             int inicioX, inicioY;
             inicioX = startx;
@@ -41,6 +41,7 @@ namespace KnightsTours
             string passeio = string.Empty;
             //Matriz que representa o tabuleiro de xadrez;
             int[,] tabuleiro = new int[linha, coluna];
+            this.obstaculos = obstaculo;
             Graph grafoSolucao = new Graph();
             
             //Lista que representa a capacidade do tabuleiro de xadrez;
@@ -142,6 +143,7 @@ namespace KnightsTours
 
             if (novox >= 0 && novox < linha && novoy >= 0 && novoy < coluna && tabuleiro[novox, novoy] == 0)
                 return true;
+                //return (obstaculos[novox, novoy] == 1) ? false : true;
 
             return false;
         }

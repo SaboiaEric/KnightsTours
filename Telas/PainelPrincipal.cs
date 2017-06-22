@@ -259,7 +259,7 @@ namespace KnightsTours.Telas
         {
             KnightsTours game = new KnightsTours();
 
-            a = game.Solucao(Linha, Coluna, startx, starty);
+            a = game.Solucao(Linha, Coluna, startx, starty,tabuleiroObstaculos);
             txtSolucao.Text = a;
             if (a.Equals("Não existe caminho"))
                 return;
