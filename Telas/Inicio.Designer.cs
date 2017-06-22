@@ -137,7 +137,6 @@ namespace KnightsTours.Telas
             this.txtObsX.Name = "txtObsX";
             this.txtObsX.Size = new System.Drawing.Size(51, 20);
             this.txtObsX.TabIndex = 12;
-            this.txtObsX.TextChanged += new System.EventHandler(this.txtObsX_TextChanged);
             // 
             // label7
             // 

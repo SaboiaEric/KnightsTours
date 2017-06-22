@@ -55,17 +55,11 @@ namespace KnightsTours.Telas
             controleGrupoTabuleiro(true);
         }
         
-
         public string InsereValorMinimo()
         {
             return "0";
         }
-
-        private void txtObsX_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void btnAddTabuleiro_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(txtColuna.Text) <= 0 || Convert.ToInt32(txtLine.Text) <= 0)
@@ -114,7 +108,7 @@ namespace KnightsTours.Telas
             int posx = Convert.ToInt32(txtPosx.Text);
             int posy = Convert.ToInt32(txtPosy.Text);
 
-            if (obsX >= 0 && obsX <= col - 1 && obsY >= 0 && obsY <= lin - 1)
+            if (obsX >= 0 && obsX <= lin - 1 && obsY >= 0 && obsY <= col - 1)
                 if (obsX == posx && obsY == posy)
                     return false;
                 else

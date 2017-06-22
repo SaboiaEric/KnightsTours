@@ -14,7 +14,7 @@ namespace KnightsTours
         /// <summary>
         /// Movimentos possíveis
         /// </summary>
-        readonly static int[,] moves = { 
+        readonly static int[,] moves = {
             {+1,-2},
             {+1,+2},
             {+2,-1},
@@ -33,62 +33,60 @@ namespace KnightsTours
         /// <param name="startx"></param>
         /// <param name="starty"></param>
         /// <returns></returns>
-        public string Solucao(int linha, int coluna, int startx, int starty, int [,]obstaculo)
+        public string Solucao(int linha, int coluna, int startx, int starty, int[,] obstaculo)
         {
-            int inicioX, inicioY;
-            inicioX = startx;
-            inicioY = starty;
+            int x, y;
+            x = startx;
+            y = starty;
             string passeio = string.Empty;
             //Matriz que representa o tabuleiro de xadrez;
             int[,] tabuleiro = new int[linha, coluna];
             this.obstaculos = obstaculo;
             Graph grafoSolucao = new Graph();
-            
+
             //Lista que representa a capacidade do tabuleiro de xadrez;
-            List<Node> tabuleiroLista = new List<Node>(linha*coluna);
+            List<Node> tabuleiroLista = new List<Node>(linha * coluna);
             //Cria e coleta o primeiro nó
-            Node noAntigo = new Node(inicioX.ToString() + inicioY.ToString(), inicioX, inicioY);
+            Node noAntigo = new Node(x.ToString() + y.ToString(), x, y);
             //Adiciona o primeiro nó na lista dos nós existentes no tabuleiro
             tabuleiroLista.Add(noAntigo);
             //Adiciona este nó no grafo de solução pois a solução terá como partida este nó.
-            grafoSolucao.AddNode(noAntigo.Nome, inicioX, inicioY);
-            
+            grafoSolucao.AddNode(noAntigo.Nome, x, y);
+
             while (tabuleiroLista.Count < linha * coluna)
             {
-                
                 //Verifica se há movimentos possiveis para o cavalo andar
-                if (MovimentoEPossivel(tabuleiro, inicioX, inicioY, linha, coluna))
+                if (MovimentoEPossivel(tabuleiro, x, y, linha, coluna))
                 {
-                    int move = tabuleiro[inicioX, inicioY];
-                    tabuleiro[inicioX, inicioY]++;
-                    inicioX += moves[move, 0];
-                    inicioY += moves[move, 1];
-                    Node novo = new Node(inicioX.ToString() + inicioY.ToString(), inicioX, inicioY);
-                    grafoSolucao.AddNode(novo.Nome, inicioX, inicioY);
+                    int move = tabuleiro[x, y];
+                    tabuleiro[x, y]++;
+                    x += moves[move, 0];
+                    y += moves[move, 1];
+                    Node novo = new Node(x.ToString() + y.ToString(), x, y);
+                    grafoSolucao.AddNode(novo.Nome, x, y);
                     grafoSolucao.AddEdge(noAntigo.Nome, novo.Nome, 1);
                     tabuleiroLista.Add(novo);
                     noAntigo = novo;
                 }
                 else
                 {
-                    if (tabuleiro[inicioX, inicioY] >= 8)
+                    if (tabuleiro[x, y] >= 8)
                     {
-                        tabuleiro[inicioX, inicioY] = 0;
+                        tabuleiro[x, y] = 0;
                         Node removido = tabuleiroLista[tabuleiroLista.Count - 1];
                         tabuleiroLista.RemoveAt(tabuleiroLista.Count - 1);
                         grafoSolucao.RemoveNode(removido.Nome);
 
                         if ((grafoSolucao.Nodes.Length - 1) < 0)
                             return ("Não existe caminho");
-                        else
-                        {
-                            noAntigo = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1];
-                            inicioX = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].X;
-                            inicioY = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].Y;
-                        }
+
+                        noAntigo = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1];
+                        x = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].X;
+                        y = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].Y;
+
 
                     }
-                    tabuleiro[inicioX, inicioY]++;
+                    tabuleiro[x, y]++;
                 }
             }
 
@@ -96,15 +94,15 @@ namespace KnightsTours
             {
                 if (item.Arcos.Count > 1)
                 {
-                    passeio += Convert.ToChar(item.Arcos[item.Arcos.Count - 1].To.X + 65).ToString() + 
+                    passeio += Convert.ToChar(item.Arcos[item.Arcos.Count - 1].To.X + 65).ToString() +
                         (item.Arcos[item.Arcos.Count - 1].To.Y + 1).ToString() + ", ";
                     continue;
                 }
                 foreach (Edge item2 in item.Arcos)
                     if (item2.To != null)
-                        passeio += Convert.ToChar((item2.To.X + 65)).ToString() + (item2.To.Y +1).ToString() + ", ";
+                        passeio += Convert.ToChar((item2.To.X + 65)).ToString() + (item2.To.Y + 1).ToString() + ", ";
             }
-            if(passeio != string.Empty)
+            if (passeio != string.Empty)
                 passeio = passeio.Remove(passeio.Length - 2);
             return passeio;
         }
@@ -134,16 +132,14 @@ namespace KnightsTours
         public bool MovimentoEPossivel(int[,] tabuleiro, int xatual, int yatual, int linha, int coluna)
         {
             //Quantidade de tentativas realizadas nesta posição.
-            int tentativas = tabuleiro[xatual, yatual];
-            if (tentativas >= 8)
+            if (tabuleiro[xatual, yatual] >= 8)
                 return false;
 
-            int novox = xatual + moves[tabuleiro[xatual, yatual], 0]; 
+            int novox = xatual + moves[tabuleiro[xatual, yatual], 0];
             int novoy = yatual + moves[tabuleiro[xatual, yatual], 1];
 
             if (novox >= 0 && novox < linha && novoy >= 0 && novoy < coluna && tabuleiro[novox, novoy] == 0)
-                return true;
-                //return (obstaculos[novox, novoy] == 1) ? false : true;
+                return (obstaculos[novox, novoy] == 1) ? false : true;
 
             return false;
         }
