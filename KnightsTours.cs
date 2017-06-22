@@ -55,6 +55,7 @@ namespace KnightsTours
             
             while (tabuleiroLista.Count < linha * coluna)
             {
+                
                 //Verifica se há movimentos possiveis para o cavalo andar
                 if (MovimentoEPossivel(tabuleiro, inicioX, inicioY, linha, coluna))
                 {
@@ -76,15 +77,14 @@ namespace KnightsTours
                         Node removido = tabuleiroLista[tabuleiroLista.Count - 1];
                         tabuleiroLista.RemoveAt(tabuleiroLista.Count - 1);
                         grafoSolucao.RemoveNode(removido.Nome);
-                        try
+
+                        if ((grafoSolucao.Nodes.Length - 1) < 0)
+                            return ("Não existe caminho");
+                        else
                         {
                             noAntigo = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1];
                             inicioX = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].X;
                             inicioY = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].Y;
-                        }
-                        catch (Exception)
-                        {
-                            return ("Não existe caminho");
                         }
 
                     }
@@ -133,9 +133,9 @@ namespace KnightsTours
 
         public bool MovimentoEPossivel(int[,] tabuleiro, int xatual, int yatual, int linha, int coluna)
         {
-            //Limite o tabuleiro de Xadrez a ser 8x8
-            int ca = tabuleiro[xatual, yatual];
-            if (ca >= 8)
+            //Quantidade de tentativas realizadas nesta posição.
+            int tentativas = tabuleiro[xatual, yatual];
+            if (tentativas >= 8)
                 return false;
 
             int novox = xatual + moves[tabuleiro[xatual, yatual], 0]; 

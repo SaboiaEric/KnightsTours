@@ -322,6 +322,7 @@ namespace KnightsTours.Telas
                         {
                             int dezena = int.Parse((a[i] - 48).ToString() + (a[i + 1] - 48).ToString());
                             listaint.Add(dezena);
+                            i++;
                         }
                         else
                         {
