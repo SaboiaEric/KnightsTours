@@ -1,0 +1,31 @@
+Knigth Tours
+Possibilidades:
+ - Close Tours
+ - Open Tours
+ - Com obstaculos (Resolviveu com Warnsdorff's +)
+
+É possível usar busca por profundidade quando usado grafo.
+
+Formas de solução:
+ - programação dinâmica e backtracking 
+ - Warnsdorff
+ - Grafo
+ - Redes neurais
+ - Colonia de formigas
+
+Referências em ordem de importância:
+http://gaebler.us/share/Knight_tour.html
+http://www.sciencedirect.com/science/article/pii/S0166218X04003488
+http://www.geeksforgeeks.org/backtracking-set-1-the-knights-tour-problem/
+http://www.geeksforgeeks.org/warnsdorffs-algorithm-knights-tour-problem/
+https://rosettacode.org/wiki/Knight%27s_tour#C.23
+https://edouardfouche.com/Digital-Art-&-the-Knight%27s-Tour-Problem/
+https://stackoverflow.com/questions/8402648/how-to-improve-knights-tour-with-warnsdorffs-rule
+http://math.oregonstate.edu/~math_reu/proceedings/REU_Proceedings/Proceedings1996/1996Squirrel.pdf
+http://math.oregonstate.edu/~math_reu/proceedings/REU_Proceedings/Proceedings1996/1996Wiitala.pdf
+http://math.oregonstate.edu/~math_reu/proceedings/REU_Proceedings/Proceedings2002/2002AL_McGown.pdf
+http://www.cs.nott.ac.uk/~pszgxk/papers/cec05knights.pdf
+http://www.mayhematics.com/t/t.htm
+http://www.csie.ntnu.edu.tw/~linss/knighttours/Optimal_algorithms_for_constructing_knight's_tours_DAM_2005_paper.pdf
+http://www.csie.ntnu.edu.tw/~linss/knighttours/bases.html
+
