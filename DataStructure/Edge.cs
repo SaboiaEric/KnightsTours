@@ -9,6 +9,8 @@ namespace KnightsTours.Telas
     /// <summary>
     /// Classe que representa um arco.
     /// </summary>
+    /// 
+    [SerializableAttribute]
     public class Edge
     {
 

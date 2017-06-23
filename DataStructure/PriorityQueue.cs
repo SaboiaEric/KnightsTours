@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace KnightsTours.Telas
 {
+    [SerializableAttribute]
     public class PriorityQueue : LinkedList<Node>
     {
         public void Insert()

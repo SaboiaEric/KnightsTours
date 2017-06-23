@@ -241,11 +241,11 @@ namespace KnightsTours.Telas
             if (b.BackColor == Color.LightGray)
             {
 
-                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
+                f = Image.FromFile("C:\\Projetos\\Eric-Github\\KnightsTours\\Imagens\\HORSECINZA.png");
             }
             else
             {
-                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
+                f = Image.FromFile("C:\\Projetos\\Eric-Github\\KnightsTours\\Imagens\\HORSE.png");
             }
             b.BackgroundImage = f;
             completo++;
@@ -339,9 +339,9 @@ namespace KnightsTours.Telas
 
                     Image f = null;
                     if (BL[bx, by].BackColor == Color.LightGray)
-                        f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
+                        f = Image.FromFile("C:\\Projetos\\Eric-Github\\KnightsTours\\Imagens\\HORSECINZA.png");
                     else
-                        f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
+                        f = Image.FromFile("C:\\Projetos\\Eric-Github\\KnightsTours\\Imagens\\HORSE.png");
 
                     BL[bx, by].BackgroundImage = f;
                     Thread.Sleep(TempoProcessamentoEmMinisegundos / 3);
@@ -390,11 +390,11 @@ namespace KnightsTours.Telas
             Image f = null;
             if (BL[startx, starty].BackColor == Color.LightGray)
             {
-                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSECINZA.png");
+                f = Image.FromFile("C:\\Projetos\\Eric-Github\\KnightsTours\\Imagens\\HORSECINZA.png");
             }
             else
             {
-                f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\HORSE.png");
+                f = Image.FromFile("C:\\Projetos\\Eric-Github\\KnightsTours\\Imagens\\HORSE.png");
             }
             BL[startx, starty].BackgroundImage = f;
             BL[startx, starty].Text = "";
@@ -411,7 +411,7 @@ namespace KnightsTours.Telas
                 for (int j = 0; j < Coluna; j++)
                     if(tabuleiroObstaculos[i,j] == 1)
                     {
-                        Image f = Image.FromFile("C:\\Projetos\\KnightsTours\\Imagens\\peao.png");
+                        Image f = Image.FromFile("C:\\Projetos\\Eric-Github\\KnightsTours\\Imagens\\peao.png");
                         BL[i,j].BackgroundImage = f;
                         BL[i, j].Text = "";
                     }

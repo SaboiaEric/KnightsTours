@@ -9,6 +9,7 @@ namespace KnightsTours.Telas
     /// <summary>
     /// Classe que representa um grafo.
     /// </summary>
+    [SerializableAttribute]
     public class Graph
     {
 
@@ -211,7 +212,18 @@ namespace KnightsTours.Telas
             return path;
 
         }
-        
+
+        public Graph DeepCopy(Graph other)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(ms, other);
+                ms.Position = 0;
+                return (Graph)formatter.Deserialize(ms);
+            }
+        }
+
         #endregion
 
 

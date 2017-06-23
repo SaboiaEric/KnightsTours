@@ -50,6 +50,8 @@ namespace KnightsTours
             tabuleiroLista.Add(noAntigo);
             grafoSolucao.AddNode(noAntigo.Nome, x, y);
 
+
+
             while (tabuleiroLista.Count < Linha * Coluna)
             {
                 if (MovimentoEPossivel(tabuleiro, x, y, Linha, Coluna))
@@ -72,8 +74,7 @@ namespace KnightsTours
                         {    
                             maior = grafoSolucao.Nodes.Length;
 
-                            grafoAuxiliar = grafoSolucao;
-                            
+                            grafoAuxiliar = new Graph().DeepCopy(grafoSolucao);                            
                         }
                         tabuleiro[x, y] = 0;
                         Node removido = tabuleiroLista[tabuleiroLista.Count - 1];
@@ -156,4 +157,5 @@ namespace KnightsTours
         }
 
     }
+
 }

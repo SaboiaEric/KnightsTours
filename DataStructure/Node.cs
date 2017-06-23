@@ -6,6 +6,7 @@ namespace KnightsTours.Telas
     /// <summary>
     /// Classe que representa um nó dentro de um grafo.
     /// </summary>
+    [SerializableAttribute]
     public class Node
     {
 
