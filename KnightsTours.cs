@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using KnightsTours.Telas;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Runtime.Serialization;
 
 namespace KnightsTours
 {
@@ -26,17 +29,20 @@ namespace KnightsTours
         /// <returns></returns>
         public string Solucao(int l, int c, int startx, int starty, int[,] obstaculo)
         {
-            
+
             int Linha = l;
             int Coluna = c;
             string passeio = string.Empty;
             int[,] tabuleiro = new int[Linha, Coluna];
             Graph grafoSolucao = new Graph();
+            Graph grafoAuxiliar = new Graph();
+            int maior = 0;
+            bool chooseGraph = false;
             tabuleiro.Initialize();
             int x, y;
             x = startx;
             y = starty;
-            
+
             this.obstaculos = obstaculo;
 
             List<Node> tabuleiroLista = new List<Node>(Linha * Coluna);
@@ -62,23 +68,38 @@ namespace KnightsTours
                 {
                     if (tabuleiro[x, y] >= 8)
                     {
+                        if (grafoSolucao.Nodes.Length > maior)
+                        {    
+                            maior = grafoSolucao.Nodes.Length;
+
+                            grafoAuxiliar = grafoSolucao;
+                            
+                        }
                         tabuleiro[x, y] = 0;
                         Node removido = tabuleiroLista[tabuleiroLista.Count - 1];
                         tabuleiroLista.RemoveAt(tabuleiroLista.Count - 1);
                         grafoSolucao.RemoveNode(removido.Nome);
 
                         if ((grafoSolucao.Nodes.Length - 1) < 0)
-                            return ("Não existe caminho");
-
-                        noAntigo = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1];
-                        x = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].X;
-                        y = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].Y;
+                        {
+                            chooseGraph = true;
+                            break;
+                        }
+                        else
+                        {
+                            noAntigo = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1];
+                            x = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].X;
+                            y = grafoSolucao.Nodes[grafoSolucao.Nodes.Length - 1].Y;
+                        }
 
 
                     }
                     tabuleiro[x, y]++;
                 }
             }
+
+            if (chooseGraph)
+                grafoSolucao = grafoAuxiliar;
 
             foreach (Node item in grafoSolucao.Nodes)
             {
@@ -133,6 +154,6 @@ namespace KnightsTours
 
             return false;
         }
+
     }
 }
-

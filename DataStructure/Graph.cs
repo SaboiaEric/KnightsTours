@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace KnightsTours.Telas
 {
@@ -17,7 +19,7 @@ namespace KnightsTours.Telas
         /// </summary>
         private List<Node> nos;
 
-       
+
 
         #endregion
 
@@ -207,7 +209,9 @@ namespace KnightsTours.Telas
                 }
             }
             return path;
+
         }
+        
         #endregion
 
 
