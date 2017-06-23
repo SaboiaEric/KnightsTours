@@ -73,7 +73,6 @@ namespace KnightsTours
                         if (grafoSolucao.Nodes.Length > maior)
                         {    
                             maior = grafoSolucao.Nodes.Length;
-
                             grafoAuxiliar = new Graph().DeepCopy(grafoSolucao);                            
                         }
                         tabuleiro[x, y] = 0;
@@ -106,8 +105,7 @@ namespace KnightsTours
             {
                 if (item.Arcos.Count > 1)
                 {
-                    passeio += Convert.ToChar(item.Arcos[item.Arcos.Count - 1].To.X + 65).ToString() +
-                        (item.Arcos[item.Arcos.Count - 1].To.Y + 1).ToString() + ", ";
+                    passeio += Convert.ToChar(item.Arcos[item.Arcos.Count - 1].To.X + 65).ToString() + (item.Arcos[item.Arcos.Count - 1].To.Y + 1).ToString() + ", ";
                     continue;
                 }
                 foreach (Edge item2 in item.Arcos)
@@ -118,28 +116,6 @@ namespace KnightsTours
                 passeio = passeio.Remove(passeio.Length - 2);
             return passeio;
         }
-
-        public string FormataPasseio(string pas)
-        {
-            string b = new string(pas.ToCharArray().Where(x => !Char.IsWhiteSpace(x)).ToArray());
-            string a = new string(b.ToCharArray().Where(x => !(",").Contains(x)).ToArray());
-            string f = "";
-            char[] bx = a.ToCharArray();
-            for (int i = 0; i < bx.Length; i += 2)
-            {
-                if (i == bx.Length - 2)
-                {
-                    f += Convert.ToChar(bx[i] + 17) + (bx[i + 1] - 47).ToString();
-                }
-                else
-                {
-                    f += Convert.ToChar(bx[i] + 17) + (bx[i + 1] - 47).ToString() + ",";
-                }
-            }
-
-            return f;
-        }
-
 
         public bool MovimentoEPossivel(int[,] tabuleiro, int xatual, int yatual, int Linha, int Coluna)
         {
